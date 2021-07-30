@@ -10,6 +10,9 @@ const Products: React.FC = () => {
         title: string;
         description: string;
         numberItens: number;
+        Value: number;
+        ValueUnits: number;
+        Price: number;
         available: boolean;
         created_at: Date;
         updated_at: Date;
@@ -73,6 +76,8 @@ const Products: React.FC = () => {
                         <th>Data de atualização</th>
                         <th>Status</th>
                         <th>Quantidade disponível</th>
+                        <th>Preço do produto</th>
+                        <th>Valor da mercadoria</th>
                         <th>Ações</th>
 
 
@@ -94,6 +99,12 @@ const Products: React.FC = () => {
 
                                 <td>
                                     {products.numberItens}
+                                </td>
+
+                                <td>{products.Price}</td>
+
+                                <td>
+                                    {products.Value}
                                 </td>
                                 <td>
                                     <Button size="sm" disabled={products.available} onClick={() => editOne(products.id)}>Editar</Button>{' '}

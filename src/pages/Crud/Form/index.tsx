@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect, ChangeEvent } from 'react';
+import Select from 'react-select'
 import { Button, Form } from 'react-bootstrap';
-import {useHistory, useParams} from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import api from '../../../services/api'
 import '../index.css'
@@ -18,8 +19,8 @@ interface IParamsProps {
 
 
 const Crud: React.FC = () => {
-const history = useHistory()
-const { id } = useParams<IParamsProps>();
+    const history = useHistory()
+    const { id } = useParams<IParamsProps>();
 
 
     const [model, setModel] = useState<ICrud>({
@@ -28,7 +29,7 @@ const { id } = useParams<IParamsProps>();
     })
 
     useEffect(() => {
-        if(id !== undefined ) {
+        if (id !== undefined) {
             findOne(id)
         }
     }, [id])
@@ -40,24 +41,24 @@ const { id } = useParams<IParamsProps>();
         })
     }
 
-   async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
+    async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault()
-        if(id !== undefined ) {
+        if (id !== undefined) {
 
-        const response = await api.put(`/crud/${id}`, model)
+            const response = await api.put(`/crud/${id}`, model)
 
 
         } else {
-        const response = await api.post('/crud', model)
+            const response = await api.post('/crud', model)
 
         }
 
         back()
     }
 
-    async function findOne(id:string) {
+    async function findOne(id: string) {
         const response = await api.get(`crud/${id}`)
-        setModel( {
+        setModel({
             title: response.data.title,
             description: response.data.description
         })
@@ -94,6 +95,7 @@ const { id } = useParams<IParamsProps>();
                 </Form>
             </div>
 
+            <Select />
         </div>
     )
 }

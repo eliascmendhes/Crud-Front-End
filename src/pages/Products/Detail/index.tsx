@@ -16,6 +16,8 @@ interface IProducts {
     description: string;
     available: boolean;
     numberItens: number;
+    Value: number;
+    Price: number;
     created_at: Date;
     updated_at: Date;
 
@@ -72,6 +74,11 @@ const Detail: React.FC = () => {
                         <strong>Número de itens disponível</strong>
                         <p>{products?.numberItens}</p>
                         <br />
+                        <strong>Valor da mercadoria:{products?.Value}</strong>
+                        <br />
+                        <strong>Preço do produto:{products?.Price}</strong>
+                        <br />
+
                         <strong>Atualização:</strong>
                         <Badge className="text-padrao">
                             {formateDate(products?.updated_at)}
