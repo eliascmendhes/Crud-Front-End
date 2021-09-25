@@ -11,3 +11,9 @@
 .text-padrao {
     color: #000000;
 }
+
+
+.buttons {
+    border: 1px solid red;
+    justify-content: space-around;
+}

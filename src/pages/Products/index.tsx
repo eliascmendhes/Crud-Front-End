@@ -106,7 +106,7 @@ const Products: React.FC = () => {
                                 <td>
                                     {products.Value}
                                 </td>
-                                <td>
+                                <td className="buttons">
                                     <Button size="sm" disabled={products.available} onClick={() => editOne(products.id)}>Editar</Button>{' '}
                                     <Button variant="success" disabled={products.available} size="sm" onClick={() => finishedCD(products.id)}>Finalizar</Button>{' '}
                                     <Button variant="info" size="sm" onClick={() => view(products.id)}>Visualizar</Button>{' '}

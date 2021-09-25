@@ -1,6 +1,5 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom'
-import Home from './pages/Home'
 import Crud from './pages/Crud'
 import CrudForm from './pages/Crud/Form'
 import CrudDetail from './pages/Crud/Detail'
@@ -10,7 +9,7 @@ import Detail from './pages/Products/Detail'
 const Routes: React.FC =() =>  {
     return(
         <Switch>
-            <Route path="/" exact component={Home} />
+            <Route path="/" exact component={Crud} />
             <Route path="/crud" exact component={Crud} />
             <Route path="/crud_cadastro" exact component={CrudForm} />
             <Route path="/crud_cadastro/:id" exact component={CrudForm} />

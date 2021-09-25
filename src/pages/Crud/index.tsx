@@ -61,14 +61,14 @@ const Crud: React.FC = () => {
             <br />
             <div className="crud-header">
                 <h1>Crud</h1>
-                <Button size="sm" variant="dark" onClick={newPedido}>Nova Tarefa</Button>
+                <Button size="sm" variant="dark" onClick={newPedido}>Novo pedido</Button>
             </div>
             <br />
             <Table striped bordered hover className="text-center">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Título</th>
+                        <th>Nome do pedido</th>
                         <th>Data de atualização</th>
                         <th>Status</th>
                         <th>Ações</th>

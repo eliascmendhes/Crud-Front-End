@@ -6,9 +6,15 @@ import { useHistory, useParams } from 'react-router-dom'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import api from '../../../services/api'
 import '../index.css'
+interface IProducts {
+    title: string;
+
+}
 interface ICrud {
     title: string;
     description: string;
+    numberItens: number;
+    Value: number;
 
 
 }
@@ -26,6 +32,12 @@ const Crud: React.FC = () => {
     const [model, setModel] = useState<ICrud>({
         title: '',
         description: '',
+        numberItens: 0,
+        Value: 0,
+    })
+
+    const [products, setproducts] = useState<IProducts>({
+        title: '',
     })
 
     useEffect(() => {
@@ -37,6 +49,13 @@ const Crud: React.FC = () => {
     function updatedModel(e: ChangeEvent<HTMLInputElement>) {
         setModel({
             ...model,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    function updatedProducts(e: ChangeEvent<HTMLInputElement>) {
+        setproducts({
+            ...products,
             [e.target.name]: e.target.value
         })
     }
@@ -60,7 +79,15 @@ const Crud: React.FC = () => {
         const response = await api.get(`crud/${id}`)
         setModel({
             title: response.data.title,
-            description: response.data.description
+            description: response.data.description,
+            numberItens: response.data.numberItens,
+            Value: response.data.Value,
+
+        })
+
+
+        setproducts({
+            title: response.data.title,
         })
     }
 
@@ -80,14 +107,24 @@ const Crud: React.FC = () => {
             <div className="container">
                 <Form onSubmit={onSubmit}>
                     <Form.Group >
-                        <Form.Label>Title</Form.Label>
-                        <Form.Control type="text" name="title" value={model.title} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} />
+                        <Form.Label>Nome do pedido</Form.Label>
+                        <Select >
+                            {/* <option value={products.title}>{products.title} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedProducts(e)}</option> */}
+                         {/* <option value={products.title}>{products.title}</option> */}
+                        </Select>
+
 
                     </Form.Group>
 
                     <Form.Group>
-                        <Form.Label>Descrição</Form.Label>
-                        <Form.Control as="textarea" rows={3} value={model.description} name="description" onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} />
+                        <Form.Label>Valor do pedido</Form.Label>
+                        <Form.Control type="number"  value={model.Value} name="Value" onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} />
+                    </Form.Group>
+
+
+                    <Form.Group>
+                        <Form.Label>Quantidade</Form.Label>
+                        <Form.Control type="number" value={model.numberItens} name="numberItens" onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)}></Form.Control>
                     </Form.Group>
                     <Button variant="dark" type="submit">
                         Enviar
@@ -95,7 +132,6 @@ const Crud: React.FC = () => {
                 </Form>
             </div>
 
-            <Select />
         </div>
     )
 }
